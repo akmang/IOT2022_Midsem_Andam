@@ -15,27 +15,21 @@ else echo "Connection Success!";
 
 $Owner=" ";
 $Location=" ";
-$Reading=" ";
-$Time=" ";
+$TankID=" ";
+
+if(isset($_GET['TankID'])){
+$TankID=$_GET['TankID'];
+}
 
 if(isset($_GET['Owner'])){
-$Temperature=$_GET['Owner'];
+$Owner=$_GET['Owner'];
 }
 
 if(isset($_GET['Location'])){
-$Humidity=$_GET['Location'];
+$Location=$_GET['Location'];
 }
 
-if(isset($_GET['Reading'])){
-$Temperature=$_GET['Reading'];
-}
-
-if(isset($_GET['Time'])){
-$Temperature=$_GET['Time'];
-}
-
-$sql = "INSERT INTO `TankSystem` (`Owner`,`Location`,`Reading`,`Time`) 
-VALUE ('{$Owner}','{$Location}','{$Reading}','{$Time}')";
+$sql = "INSERT INTO `TankInformation` (`TankID`,`Owner`,`Location`) VALUE ('{$TankID}','{$Reading}','{$Location}')";
 
 if (mysqli_query($con, $sql)){
     echo "Database updated successfully";
