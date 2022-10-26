@@ -29,12 +29,27 @@ if(isset($_GET['Location'])){
 $Location=$_GET['Location'];
 }
 
-$sql = "INSERT INTO `TankInformation` (`TankID`,`Owner`,`Location`) VALUE ('{$TankID}','{$Reading}','{$Location}')";
+$sql_check = "SELECT `TankID` FROM `TankInformation` WHERE `TankID` = {$TankID}";
+$sql_insert  = "INSERT INTO `TankInformation` (`TankID`,`Owner`,`Location`) VALUES ('{$TankID}','{$Owner}','{$Location}')";
 
-if (mysqli_query($con, $sql)){
-    echo "Database updated successfully";
+
+$id_present_check = mysqli_query($con, $sql_check);
+
+if ($id_present_check) {
+	if (mysqli_num_rows($id_present_check) == 1) {
+		echo "Data already present\n";
+	} else {
+		if (mysqli_query($con, $sql_insert )){
+			echo "Data inserted successfully\n";
+		}
+		else {		
+			echo "Error! Could not update\n";
+		}
+	}
+
+} else {
+	echo "Could not query database\n";
+	exit(1);
 }
-else
-echo "Error! Could not update";
 
 ?>
