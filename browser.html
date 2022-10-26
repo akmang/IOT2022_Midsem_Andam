@@ -1,0 +1,57 @@
+
+<!DOCTYPE html><html><head>
+<title>Local network</title>
+<style>
+body {margin-top:50px; font-family:Georgia}
+body {font-size:20px; text-align:center}
+.btn {display:block; width:200px; margin:auto; padding:20px}
+.btn {font-size:10px; color:black; text-decoration:none}
+.on {background-color:lightgreen}
+.off {background-color:lightskyblue}
+.zero {background-color:Thistle}
+td {font-size:20px; margin-top:50px; margin-bottom:5px}
+p {font-size:20px; margin-top:50px; margin-bottom:5px}
+</style></head>
+<body>
+<h1>Dashboard</h1>
+<table class="table" style='width:100%'>
+    <thead>
+      <tr>
+      <th scope="col">TankID</th>
+      <th scope="col">Water Level</th>
+      <th scope="col">Owner</th>
+      <th scope="col">Location</th>
+    </tr>
+  </thead>
+
+<tbody>
+<tr>
+    <th scope="row">1</th>
+    <td>Reading</td>
+    <td>Owner</td>
+    <td>Ashesi</td>
+</tr>
+<tr>
+
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Reading</td>
+            <td>Owner</td>
+            <td>Ashesi</td>
+        </tr>
+        <tr>
+</table>
+<br/><br/> <br/><br/>       
+<h2>Select Operation Mode</h2>      
+
+<table style='width:100%'><tr>
+<td><button class = 'btn off' id='Manual'
+    onclick = 'sendData(id)'>Manual Operation
+    </button></td>
+    <td><button class = 'btn off' id='Automatic'
+    onclick = 'sendData(id)'>Automatic Operation
+    </button></td>
+</tr></table>
+</html>
+
