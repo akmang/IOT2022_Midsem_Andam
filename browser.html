@@ -137,11 +137,7 @@
         }
 
 
-        function send_state_to_arduino() {
-            fetch("status/"+ get_mode_signal())
-        }
 
-        
 
         function set_manual_controls(is_enabled) {
             let start_btn = document.getElementById("Start");
@@ -183,23 +179,28 @@
             let state = get_send_signal();
         }
         function sendData(butn) {
-            var URL, variab, text;
+            var URL, text;
             if (butn == 'Manual') {
-                URL = 'LEDRurl';
-                variab = 'LEDR';
+                URL = '/status/0';
+                variab = '0';
             }
 
             else if (butn == 'Automatic') {
-                URL = 'LEDGurl';
-                variab = 'LEDG';
+                URL = '/status/1';
+                variab = '1';
             }
             else if (butn == 'Start') {
-                URL = 'STAurl';
-                variab = 'STA';
+                if (butn == 'Manual') {
+                    URL = '/status/0';
+                    variab = '0';
+                } else {
+                    URL = '/status/2';
+                    variab = '2';
+                }
             }
             else if (butn == 'Stop') {
-                URL = 'STOurl';
-                variab = 'STO';
+                URL = '/status/0';
+                variab = '0';
             }
 
             // change button class and text 
@@ -208,6 +209,7 @@
                 set_manual_controls(true);
                 set_mode_signal(0);
             }
+
             if (butn == 'Automatic') {
                 update_Op_Btn("Automatic", "Manual")
                 set_manual_controls(false);
@@ -224,8 +226,8 @@
 
                 self.className = old_state == 'btn on' ? 'btn off' : 'btn on';
                 other.className = old_state == 'btn off' ? 'btn off' : other.className;
-                
-                set_mode_signal(0)
+
+                set_mode_signal(0);
 
             }
             if (butn == 'Start') {
@@ -236,14 +238,23 @@
 
                 self.className = old_state == 'btn on' ? 'btn off' : 'btn on';
                 other.className = old_state == 'btn off' ? 'btn off' : other.className;
-                
-                set_mode_signal(2)
+
+                set_mode_signal(2);
             }
 
 
-            send_state_to_arduino();
-
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function (butn) {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById(variab).innerHTML = this.
+                        responseText;
+                }
+            };
+            xhr.open('GET', URL, true);
+            xhr.send();
         }
+
+
 
     </script>
 
