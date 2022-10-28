@@ -227,20 +227,20 @@
 
   
         function updateByAJAX_dbData(){
-            const xhttp=new XMLHttpRequest();
-            xhttp.onload=function(){
-                console.log(this.responseText);
-                document.getElementById("WTL").innerHTML=this.responseText;
-            }
-            id=document.getElementById("theText").value;
-            console.log(id);
+            const xmlhttp=new XMLHttpRequest();
+            xmlhttp.onreadystatechange=function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    document.getElecmentById("WaterLevel").innerhtml = this.responseText;
+                    responseText;
+                }
+            };
         
-            
-            xhttp.open("GET", "/Applications/XAMPP/xamppfiles/htdocs/IOT/IOT2022_Midsem_Andam/retrieve.php?TankID="+id);
-            xhttp.send();
+            xmlhttp.open("GET", "/Applications/XAMPP/xamppfiles/htdocs/IOT/IOT2022_Midsem_Andam/retrieve.php?TankID=",true);
+            xmlhttp.send();
         }
-    </script>
 
+        </script>
     </section>
 </body>
 
