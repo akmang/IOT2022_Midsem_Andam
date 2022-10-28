@@ -33,7 +33,7 @@ $result = mysqli_query($con, $sql);
 
 $row = mysqli_fetch_object($result);
 
-echo" <table style='width:100%'>
+echo" <table>
    
  <tr>
 <th> TankID</th> 

@@ -7,14 +7,7 @@
     </table>
 
 
-
-
     <script>
-
-        setInterval(function() {
-            $('#beta').load('refreshing.php');
-        }, 1)
-
 
         setInterval(updateByAJAX_dbData,1000);
         function updateByAJAX_dbData(){
