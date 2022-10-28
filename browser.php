@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 
-<head> <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script> 
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
     <title>Local network</title>
     <style>
         body {
@@ -55,26 +56,7 @@
 
 <body>
     <h1>Dashboard</h1>
-    <table class="table" style='width:100%'>
-        <thead>
-            <tr>
-                <th scope="col">TankID</th>
-                <th scope="col">Water Level</th>
-                <th scope="col">Owner</th>
-                <th scope="col">Location</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <?php
-            include("tanksystemconnect.php");
-            get_latest();
-            ?>
-
-        <tbody>
-
-
-    </table>
+    <div id ="beta"></div>
     <br /><br /> <br /><br />
     <h2>Select Operation Mode</h2>
 
@@ -115,7 +97,7 @@
     <!-- Auto on, Man off -  1 -->
     <!-- Auto off, Man on -  2 -->
     <!-- Auto on, Man on -   ! -->
-    <div id="send_enabled">0</div>
+    <div hidden id="send_enabled">0</div>
 
 
     <script>
@@ -244,14 +226,10 @@
 
 
 
-            $(document).ready(function() {
-                setTimeout("RefreshPage()", 5000);
-            })
+        setInterval(function() {
+            $('#beta').load('refreshing.php');
+        }, 1)
 
-        function RefreshPage() {
-            location.reload();
-        }
-  
     </script>
 
     </section>
