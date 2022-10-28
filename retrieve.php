@@ -46,4 +46,4 @@ if (isset($_GET['Reading'])) {
         $row=mysqli_fetch_object($q);
     }
     echo " </table>";
-    }
+
