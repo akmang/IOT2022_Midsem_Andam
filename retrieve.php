@@ -30,7 +30,7 @@ if (isset($_GET['Reading'])) {
 
 	$sql_latest = mysqli_query($con,"SELECT TankInformation.TankID,TankSystem.Reading, TankInformation.Owner,TankInformation.Location FROM TankInformation,TankSystem WHERE TankInformation.TankID = TankSystem.TankID ORDER BY TankSystem.Time DESC LIMIT 1");
     
-    $row=mysqli_fetch_object($q);
+    $row=mysqli_fetch_object($sql_latest);
     while ($row)
     {         
         
