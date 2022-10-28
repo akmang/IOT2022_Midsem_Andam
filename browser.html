@@ -56,9 +56,9 @@
 <body>
     <h1>Dashboard</h1>
     <table> 
-        
+        <div id="WaterLevel"></div>
     </table>
-    <br /><br /> <br /><br />
+
     <h2>Select Operation Mode</h2>
 
 
@@ -225,18 +225,16 @@
             xhr.send();
         }
 
-  
+        setInterval(updateByAJAX_dbData,1000);
         function updateByAJAX_dbData(){
             const xmlhttp=new XMLHttpRequest();
             xmlhttp.onreadystatechange=function(){
                 if (this.readyState == 4 && this.status == 200) {
                     console.log(this.responseText);
-                    document.getElecmentById("WaterLevel").innerhtml = this.responseText;
-                    responseText;
+                    document.getElementById("WaterLevel").innerHTML = this.responseText;
                 }
             };
-        
-            xmlhttp.open("GET", "/Applications/XAMPP/xamppfiles/htdocs/IOT/IOT2022_Midsem_Andam/retrieve.php?TankID=",true);
+            xmlhttp.open("GET", "retrieve.php",true);
             xmlhttp.send();
         }
 

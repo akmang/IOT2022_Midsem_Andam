@@ -32,9 +32,19 @@ $result = mysqli_query($con, $sql);
 
 
 $row = mysqli_fetch_object($result);
+
+echo" <table style='width:100%'>
+   
+ <tr>
+<th> TankID</th> 
+<th> Reading</th> 
+<th> Owner</th> 
+<th> Location</th> 
+</tr>";
+
 while ($row) {
     echo " 
-        <table style='width:100%'>
+        
         <tr>
             <td> {$row->TankID}</td> 
             <td> {$row->Reading}</td> 
@@ -42,6 +52,6 @@ while ($row) {
             <td> {$row->Location}</td> 
         </tr>
         ";
-    $row = mysqli_fetch_object($q);
+    $row = mysqli_fetch_object($result);
 }
 echo " </table>";
