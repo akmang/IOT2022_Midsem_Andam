@@ -26,7 +26,7 @@ if (isset($_GET['Location'])) {
 }
 
 
-$sql = "SELECT TankInformation.TankID,TankSystem.Reading, TankInformation.Owner,TankInformation.Location FROM TankInformation,TankSystem WHERE TankInformation.TankID = TankSystem.TankID ORDER BY TankSystem.Time DESC LIMIT 1";
+$sql = "SELECT TankInformation.TankID,TankSystem.Reading, TankInformation.Owner,TankInformation.Location FROM TankInformation,TankSystem WHERE TankInformation.TankID = TankSystem.TankID ORDER BY TankSystem.Time DESC LIMIT 5";
 $result = mysqli_query($con, $sql);
 
 
