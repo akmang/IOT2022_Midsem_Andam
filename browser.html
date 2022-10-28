@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head> <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script> 
+<head> 
     <title>Local network</title>
     <style>
         body {
@@ -55,26 +55,20 @@
 
 <body>
     <h1>Dashboard</h1>
-    <table class="table" style='width:100%'>
-        <thead>
-            <tr>
-                <th scope="col">TankID</th>
-                <th scope="col">Water Level</th>
-                <th scope="col">Owner</th>
-                <th scope="col">Location</th>
-            </tr>
-        </thead>
+    <div class="alert alert-dark" role="alert">
+        Details of record in the Databse. Enter TankID 
+      </div>
 
-        <tbody>
-            <?php
-            include("tanksystemconnect.php");
-            get_latest();
-            ?>
-
-        <tbody>
-
-
-    </table>
+      <div class="mb-3 row">
+        <label for="theText" class="col-sm-2 col-form-label">TankID</label>
+        <div class="col-sm-8">
+          <input type="text" class="form-control" id="theText" placeholder="Enter a unique owner id">
+        </div>
+        <div class="col-sm-2">
+            <button onclick="updateByAJAX_dbData()" class="btn btn-outline-primary mb-3">Fetch info</button>
+          </div>
+      </div>
+      
     <br /><br /> <br /><br />
     <h2>Select Operation Mode</h2>
 
@@ -115,7 +109,7 @@
     <!-- Auto on, Man off -  1 -->
     <!-- Auto off, Man on -  2 -->
     <!-- Auto on, Man on -   ! -->
-    <div id="send_enabled">0</div>
+    <div hidden id="send_enabled">0</div>
 
 
     <script>
@@ -242,16 +236,20 @@
             xhr.send();
         }
 
-
-
-            $(document).ready(function() {
-                setTimeout("RefreshPage()", 5000);
-            })
-
-        function RefreshPage() {
-            location.reload();
-        }
   
+        function updateByAJAX_dbData(){
+            const xhttp=new XMLHttpRequest();
+            xhttp.onload=function(){
+                console.log(this.responseText);
+                document.getElementById("WTL").innerHTML=this.responseText;
+            }
+            id=document.getElementById("theText").value;
+            console.log(id);
+        
+            
+            xhttp.open("GET", "/Applications/XAMPP/xamppfiles/htdocs/IOT/IOT2022_Midsem_Andam/retrieve.php?TankID="+id);
+            xhttp.send();
+        }
     </script>
 
     </section>
