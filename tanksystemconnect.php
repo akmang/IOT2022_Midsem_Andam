@@ -26,11 +26,11 @@ if (isset($_GET['Reading'])) {
 $sql = "INSERT INTO `TankSystem` (`TankID`,`Reading`) VALUE ('{$TankID}','{$Reading}')";
 
 
- if (mysqli_query($con, $sql)){
-     echo "Database updated successfully";
- }
- else
- echo "Error! Could not update";
+//  if (mysqli_query($con, $sql)){
+//      echo "Database updated successfully";
+//  }
+//  else
+//  echo "Error! Could not update";
 
 function get_latest()
 {
