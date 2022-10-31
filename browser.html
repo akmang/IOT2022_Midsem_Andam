@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head> 
+<head>
     <title>Local network</title>
     <style>
         body {
@@ -55,7 +55,7 @@
 
 <body>
     <h1>Dashboard</h1>
-
+    <p> Current Reading is </p><p id="CurrentReading"></p>
     <table style='width:100%'>
         <tr>
             <td style="font-size:15px">Manual Operation</td>
@@ -167,6 +167,10 @@
                 URL = '/status/0';
                 variab = '0';
             }
+            else if (butn == 'CurrentReading') {
+                URL = '/status/0';
+                variab = '0';
+            }
 
             // change button class and text 
             if (butn == 'Manual') {
@@ -209,19 +213,30 @@
 
 
             var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function(butn) {
+            xhr.onreadystatechange = function (butn) {
                 if (this.readyState == 4 && this.status == 200) {
                     document.getElementById(variab).innerHTML = this.
-                    responseText;
+                        responseText;
                 }
             };
             xhr.open('GET', URL, true);
             xhr.send();
         }
 
+        setInterval(reload, 1000);
+        function reload() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200)
+                    document.getElementById('CurrentREading').innerHTML = this.
+                        responseText;
+            };
+            xhr.open('GET', '/CurrentReading', true);
+            xhr.send();
+        }
 
 
-        </script>
+    </script>
     </section>
 </body>
 
